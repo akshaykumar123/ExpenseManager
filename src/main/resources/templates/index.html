@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <title>Expense Manager</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.js"></script>       
+      <script th:src="@{/main.js}"></script>
+      <link th:href="@{/main.css}" rel="stylesheet" />
+       
+      <head>
+   <body ng-app="ExpenseManager" ng-controller="ExpenseController">
+      <h3>
+        E  X  P  E  N  S  E
+      </h3>
+      <form ng-submit="submitExpense()">
+         <table border="0">
+            <tr>
+                
+            </tr>
+              <tr>
+               <td>Date</td>
+                <td><input type="text" ng-model="expenseForm.date" /></td>
+            </tr>
+            <tr>
+               <td>Description</td>
+               <td><input type="text" ng-model="expenseForm.description" /></td>
+            </tr>
+            <tr>
+              <tr>
+               <td>Category</td>
+               <td><input type="text" ng-model="expenseForm.category" /></td>
+            </tr>
+            <tr>
+               <td>Amount</td>
+               <td><input type="text" ng-model="expenseForm.amount"  /></td>
+            </tr>
+            <tr>
+               <td colspan="2">
+                  <input type="submit" value="Submit" class="blue-button" />
+               </td>
+            </tr>
+         </table>
+      </form>
+      <br/>
+      <a class="create-button" ng-click="createExpense()">Create Expense</a>
+      <table border="1">
+         <tr>
+         	<th>Id</th>
+            <th>Date</th>
+            <th>Description</th>
+            <th>Category</th>
+            <th>Amount</th>
+            <th>Edit</th>
+            <th>Delete</th>
+         </tr>
+         <!-- $scope.employees -->
+         <tr ng-repeat="expenses in expense | orderBy:[]:true">
+            <td> {{ expenses.id }}</td>
+            <td> {{ expenses.date }}</td>
+            <td> {{ expenses.description }}</td>
+            <td> {{ expenses.category }}</td>
+            <td >{{ expenses.amount }}</td>
+            <td>
+            <a ng-click="editExpense(expenses)" class="edit-button">Edit</a>
+            </td>
+            <td>
+            <a ng-click="deleteExpense(expenses)" class="delete-button">Delete</a>
+            </td>
+         </tr>
+      </table>
+   </body>
+</html>

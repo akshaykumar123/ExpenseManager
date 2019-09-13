@@ -48,11 +48,11 @@ public class ExpenseServiceImpl implements ExpenseService {
 	}
 
 	@Override
-	public Boolean deleteExpense(Integer id) {
+	public void deleteExpense(Integer id) {
         
+		
 		expenseRepository.deleteById(id);
-		 	
-		return true;
+		
 	}
 
 	@Override

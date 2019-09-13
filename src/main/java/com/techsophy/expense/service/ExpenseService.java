@@ -13,7 +13,7 @@ public interface ExpenseService {
 
 	ExpenseEntity updateExpense(ExpenseEntity expense);
 
-	Boolean deleteExpense(Integer id);
+	void deleteExpense(Integer id);
 
 	List<ExpenseEntity> searchExpenseByDate(String date);
 	
