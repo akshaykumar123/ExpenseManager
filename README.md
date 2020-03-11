@@ -1,17 +1,14 @@
 # ExpenseManager
-An Spring Boot Application to Track Expenses.
+A Spring Boot Application to Track Expenses.
 
-Create Postgres Database Using :-
+Create Postgres Database Tables Using :-
 
--- Table: public.expenses
-
--- DROP TABLE public.expenses;
-
-```javascript
- CREATE TABLE public.expenses
+```python
+CREATE TABLE public.expenses
 (
   id integer NOT NULL DEFAULT nextval('expenses_id_seq'::regclass),
-  date text,
+  "user" text NOT NULL,
+  date text NOT NULL,
   description text,
   category text,
   amount bigint,
@@ -21,6 +18,20 @@ WITH (
   OIDS=FALSE
 );
 ALTER TABLE public.expenses
+  OWNER TO postgres;
+  
+  ________________________________________________________________
+  
+  CREATE TABLE public.expense
+(
+  date text NOT NULL,
+  expenditure text NOT NULL,
+  outstanding text NOT NULL
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.expense
   OWNER TO postgres;
   
 
