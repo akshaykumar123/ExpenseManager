@@ -23,7 +23,7 @@ public class ExpenseController {
 	@Autowired
 	ExpenseService expenseService;
 
-	@PostMapping("/new") // Create a new Person.
+	@PostMapping("/new") // Create a New Expense.
 	public ResponseEntity<ExpenseEntity> createExpense(@RequestBody ExpenseEntity expense) {
 
 		ExpenseEntity addedExpense = expenseService.addExpense(expense);
@@ -32,7 +32,7 @@ public class ExpenseController {
 
 	}
 
-	@GetMapping("/expenses") // Get All Person.
+	@GetMapping("/expenses") // Get All Expenses.
 	public ResponseEntity<List<ExpenseEntity>> getAllExpense() {
 
 		List<ExpenseEntity> expenseList = expenseService.getAllExpenses();
@@ -40,18 +40,35 @@ public class ExpenseController {
 		return ResponseEntity.ok(expenseList);
 	}
 
-	@DeleteMapping("/delete/{id}") // Delete a person with specific id.
-	public ResponseEntity<?> deleteExpense(@PathVariable(value = "id") Integer id) {
+	@GetMapping(path = "/expenses/", params = { "date" }) // Get All Expenses By Date.
+	public ResponseEntity<List<ExpenseEntity>> getAllExpenseByDate(@RequestParam(name = "date") String date) {
+
+		List<ExpenseEntity> expenseList = expenseService.getAllExpensesByDate(date);
+
+		return ResponseEntity.ok(expenseList);
+	}
+
+	@GetMapping(path = "/expenses/getAllByMonthAndYear/", params = { "date" }) // Get All Expenses By Month and Year.
+	public ResponseEntity<List<ExpenseEntity>> getAllExpenseByMonthAndYear(@RequestParam(name = "date") String date) {
+
+		List<ExpenseEntity> expenseList = expenseService.getAllExpensesByMonthAndYear(date);
+
+		return ResponseEntity.ok(expenseList);
+	}
+
+	@GetMapping(path = "/expenses/getAllByYear/", params = { "date" }) // Get All Expenses By Year.
+	public ResponseEntity<List<ExpenseEntity>> getAllExpenseByYear(@RequestParam(name = "date") String date) {
+
+		List<ExpenseEntity> expenseList = expenseService.getAllExpensesByYear(date);
+
+		return ResponseEntity.ok(expenseList);
+	}
+
+	@DeleteMapping("/delete/{id}") // Delete an Expense with specific id.
+	public ResponseEntity<ExpenseEntity> deleteExpense(@PathVariable(value = "id") Integer id) {
 
 		expenseService.deleteExpense(id);
-		return null; 
+		return null;
 	}
 
-	@GetMapping(path = "/expense/search", params = { "date" }) // Search by Date.
-	public ResponseEntity<List<ExpenseEntity>> searchByDate(@RequestParam(name = "date") String date) {
-
-		List<ExpenseEntity> expenseSearchedList = expenseService.searchExpenseByDate(date);
-
-		return ResponseEntity.ok(expenseSearchedList);
-	}
 }

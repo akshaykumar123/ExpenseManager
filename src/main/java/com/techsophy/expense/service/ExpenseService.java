@@ -4,9 +4,8 @@ import java.util.List;
 
 import com.techsophy.expense.entity.ExpenseEntity;
 
-
 public interface ExpenseService {
-	
+
 	ExpenseEntity addExpense(ExpenseEntity expense);
 
 	List<ExpenseEntity> getAllExpenses();
@@ -15,7 +14,10 @@ public interface ExpenseService {
 
 	void deleteExpense(Integer id);
 
-	List<ExpenseEntity> searchExpenseByDate(String date);
-	
-	
+	List<ExpenseEntity> getAllExpensesByDate(String date);
+
+	List<ExpenseEntity> getAllExpensesByMonthAndYear(String date);
+
+	List<ExpenseEntity> getAllExpensesByYear(String date);
+
 }

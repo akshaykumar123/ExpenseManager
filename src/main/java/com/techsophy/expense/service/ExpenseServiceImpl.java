@@ -12,10 +12,10 @@ import com.techsophy.expense.repository.ExpenseRepository;
 
 @Service
 public class ExpenseServiceImpl implements ExpenseService {
-	
+
 	private final Logger logger = LoggerFactory.getLogger(ExpenseServiceImpl.class);
 	private ExpenseRepository expenseRepository;
-	
+
 	@Autowired
 	public ExpenseServiceImpl(ExpenseRepository expenseRepository) {
 		super();
@@ -24,40 +24,50 @@ public class ExpenseServiceImpl implements ExpenseService {
 
 	@Override
 	public ExpenseEntity addExpense(ExpenseEntity expense) {
+
 		expenseRepository.save(expense);
 		logger.info("Added person id :  [{}]", expense.getId());
-		
 		return expense;
 	}
 
 	@Override
 	public List<ExpenseEntity> getAllExpenses() {
-        logger.info("getAll Called");
-		
+
 		return expenseRepository.findAll();
-		
 	}
 
 	@Override
 	public ExpenseEntity updateExpense(ExpenseEntity expense) {
-        expenseRepository.save(expense);
-		
-		logger.info("Updated id : [{}]", expense.getId());
 
+		expenseRepository.save(expense);
+		logger.info("Updated id : [{}]", expense.getId());
 		return expense;
 	}
 
 	@Override
 	public void deleteExpense(Integer id) {
-        
-		
+
 		expenseRepository.deleteById(id);
-		
+
 	}
 
 	@Override
-	public List<ExpenseEntity> searchExpenseByDate(String date) {
-		return expenseRepository.getExpenseByDate(date.toLowerCase());		
+	public List<ExpenseEntity> getAllExpensesByDate(String date) {
+
+		return expenseRepository.findByDate(date);
+	}
+
+	@Override
+	public List<ExpenseEntity> getAllExpensesByMonthAndYear(String date) {
+
+		String monthAndYear = date.substring(3);
+		return expenseRepository.findAllByMonthAndYear(monthAndYear);
+	}
+
+	@Override
+	public List<ExpenseEntity> getAllExpensesByYear(String date) {
+		String year = date.substring(6);
+		return expenseRepository.findAllByYear(year);
 	}
 
 }

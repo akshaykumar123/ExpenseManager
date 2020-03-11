@@ -12,18 +12,21 @@ import javax.persistence.Table;
 public class ExpenseEntity {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	 
+
+	@Column(name = "user")
+	private String user;
+
 	@Column(name = "date")
 	private String date;
-	 
+
 	@Column(name = "description")
 	private String description;
-	 
+
 	@Column(name = "category")
 	private String category;
-	 
+
 	@Column(name = "amount")
 	private Integer amount;
 
@@ -33,6 +36,14 @@ public class ExpenseEntity {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public String getUser() {
+		return user;
+	}
+
+	public void setUser(String user) {
+		this.user = user;
 	}
 
 	public String getDate() {
@@ -67,7 +78,4 @@ public class ExpenseEntity {
 		this.amount = amount;
 	}
 
-	
-	 
-	 
 }

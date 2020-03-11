@@ -3,13 +3,17 @@ package com.techsophy.expense.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import com.techsophy.expense.entity.ExpenseEntity;
 
+public interface ExpenseRepository extends JpaRepository<ExpenseEntity, Integer> {
 
-public interface ExpenseRepository extends JpaRepository<ExpenseEntity,Integer>{
-	
-	//@Query("SELECT p FROM Person as p LEFT OUTER JOIN p.addressList al WHERE lower(p.firstName) = ?1 and lower(p.lastName) = ?2 and lower(al.type) =?3")
-	List<ExpenseEntity> getExpenseByDate(String date);
+	List<ExpenseEntity> findByDate(String date);
 
+	@Query("SELECT date FROM expenses date WHERE date.date like %:monthAndYear%")
+	List<ExpenseEntity> findAllByMonthAndYear(String monthAndYear);
+
+	@Query("SELECT date FROM expenses date WHERE date.date LIKE %:year%")
+	List<ExpenseEntity> findAllByYear(String year);
 }
