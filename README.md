@@ -3,7 +3,7 @@ A Spring Boot Application to Track Expenses.
 
 Create Postgres Database Tables Using :-
 
-```python
+```javascript
 CREATE TABLE public.expenses
 (
   id integer NOT NULL DEFAULT nextval('expenses_id_seq'::regclass),
