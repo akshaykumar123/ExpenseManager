@@ -21,6 +21,6 @@ WITH (
   OIDS=FALSE
 );
 ALTER TABLE public.expenses
-  OWNER TO postgres;```
+  OWNER TO postgres;
   
 
