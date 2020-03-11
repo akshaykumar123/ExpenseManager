@@ -6,7 +6,7 @@ Create Postgres Database Tables Using :-
 ```javascript
 CREATE TABLE public.expenses
 (
-  id integer NOT NULL DEFAULT nextval('expenses_id_seq'::regclass),
+  id SERIAL,
   "user" text NOT NULL,
   date text NOT NULL,
   description text,
