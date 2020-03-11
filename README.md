@@ -7,7 +7,8 @@ Create Postgres Database Using :-
 
 -- DROP TABLE public.expenses;
 
-CREATE TABLE public.expenses
+```javascript
+ CREATE TABLE public.expenses
 (
   id integer NOT NULL DEFAULT nextval('expenses_id_seq'::regclass),
   date text,
@@ -20,5 +21,6 @@ WITH (
   OIDS=FALSE
 );
 ALTER TABLE public.expenses
-  OWNER TO postgres;
+  OWNER TO postgres;```
+  
 
